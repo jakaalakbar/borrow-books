@@ -15,9 +15,20 @@ class BorrowController extends Controller
         $this->borrowService = $borrowService;
     }
 
-    public function borrow(Request $request, $idBook)
+    public function borrow($idBook)
     {
         $data = $this->borrowService->borrow($idBook);
+
+        return response()->json([
+            "code" => Response::HTTP_OK,
+            "status" => Response::$statusTexts[Response::HTTP_OK],
+            "data" => $data,
+        ], Response::HTTP_OK);
+    }
+
+    public function returnBook($idBook)
+    {
+        $data = $this->borrowService->return($idBook);
 
         return response()->json([
             "code" => Response::HTTP_OK,

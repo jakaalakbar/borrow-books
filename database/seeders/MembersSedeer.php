@@ -32,8 +32,6 @@ class MembersSedeer extends Seeder
             Member::create([
                 "code" => $value['code'],
                 "name" => $value['name'],
-                "created_at" => now(),
-                "updated_at" => now()
             ]);
         }
     }

@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->jsonb('books')->nullable();
-            $table->date('sanksi')->nullable();
-            $table->date('borrow_date')->nullable();
+            $table->boolean('sanksi')->default(false);
+            $table->date('sanksi_date')->nullable();
             $table->timestamps();
         });
     }

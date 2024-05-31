@@ -52,8 +52,6 @@ class BooksSedeer extends Seeder
                 "title" => $value['title'],
                 "author" => $value['author'],
                 "stock" => $value['stock'],
-                "created_at" => now(),
-                "updated_at" => now()
             ]);
         }
     }
