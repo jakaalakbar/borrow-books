@@ -15,7 +15,7 @@ class BorrowController extends Controller
         $this->borrowService = $borrowService;
     }
 
-    public function borrow($idBook)
+    public function borrowBook($idBook)
     {
         $data = $this->borrowService->borrow($idBook);
 

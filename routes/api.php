@@ -20,6 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(BorrowController::class)->group(function () {
-    Route::get('/borrow_book/{id_book}', 'borrow');
+    Route::get('/borrow_book/{id_book}', 'borrowBook');
     Route::get('/return_book/{id_book}', 'returnBook');
 });
