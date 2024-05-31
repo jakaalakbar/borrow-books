@@ -36,4 +36,26 @@ class BorrowController extends Controller
             "data" => $data,
         ], Response::HTTP_OK);
     }
+
+    public function allBook()
+    {
+        $data = $this->borrowService->checkTheBook();
+
+        return response()->json([
+            "code" => Response::HTTP_OK,
+            "status" => Response::$statusTexts[Response::HTTP_OK],
+            "data" => $data,
+        ], Response::HTTP_OK);
+    }
+
+    public function members()
+    {
+        $data = $this->borrowService->getAllMembers();
+
+        return response()->json([
+            "code" => Response::HTTP_OK,
+            "status" => Response::$statusTexts[Response::HTTP_OK],
+            "data" => $data,
+        ], Response::HTTP_OK);
+    }
 }

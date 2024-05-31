@@ -22,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::controller(BorrowController::class)->group(function () {
     Route::get('/borrow_book/{id_book}', 'borrowBook');
     Route::get('/return_book/{id_book}', 'returnBook');
+    Route::get('/check_book', 'allBook');
+    Route::get('/members', 'members');
 });

@@ -12,4 +12,9 @@ class Member extends Model
     protected $table = 'members';
     protected $primaryKey = 'id';
     protected $fillable = ['code', 'name', 'sanksi', 'sanksi_date', 'borrow_date'];
+
+    public function book()
+    {
+        return $this->hasMany(Book::class);
+    }
 }

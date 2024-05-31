@@ -11,5 +11,10 @@ class Book extends Model
 
     protected $table = 'books';
     protected $primaryKey = 'id';
-    protected $fillable = ['code', 'title', 'author', 'stock', 'borrow', 'id_number'];
+    protected $fillable = ['code', 'title', 'author', 'stock', 'borrow', 'id_member'];
+
+    public function member()
+    {
+        return $this->belongsTo(Member::class);
+    }
 }

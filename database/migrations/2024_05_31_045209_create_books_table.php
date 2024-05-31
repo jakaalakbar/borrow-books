@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('author');
             $table->integer('stock')->default(0);
             $table->boolean('borrow')->default(false);
-            $table->unsignedBigInteger('id_member')->nullable();
+            $table->unsignedBigInteger('member_id')->nullable();
             $table->date('borrow_date')->nullable();
             $table->timestamps();
 

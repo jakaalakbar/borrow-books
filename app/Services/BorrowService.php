@@ -22,7 +22,7 @@ class BorrowService
         }
 
         // Anggota tidak boleh meminjam lebih dari 2 buku
-        if (Book::where("id_member", $member->id)->count() >= 2) {
+        if (Book::where("member_id", $member->id)->count() >= 2) {
             return "Anggota tidak boleh meminjam lebih dari 2 buku";
         }
 
@@ -39,7 +39,7 @@ class BorrowService
         // update data book setelah di pinjam oleh member
         $book->stock = $book->stock - 1;
         $book->borrow = true;
-        $book->id_member = $member->id;
+        $book->member_id = $member->id;
         $book->borrow_date = now();
         $book->save();
         return $book;
@@ -49,7 +49,7 @@ class BorrowService
     {
         $member = Member::where('id', 1)->first();
         $books = Book::where([
-            ['id_member', $member->id],
+            ['member_id', $member->id],
             ['id', $idBook]
         ])->first();
 
@@ -71,9 +71,25 @@ class BorrowService
         // update data book setelah dikembalikan oleh member
         $books->stock = $books->stock + 1;
         $books->borrow = false;
-        $books->id_member = null;
+        $books->member_id = null;
         $books->borrow_date = null;
         $books->save();
         return "buku " . $books->title . " author " . $books->author . " berhasil dikembalikan";
+    }
+
+    public function checkTheBook()
+    {
+        return Book::where('borrow', '!=', 1)->get();
+    }
+
+    public function getAllMembers()
+    {
+        $members = Member::with('book')->get();
+
+        $members->map(function ($member) {
+            $member->book_count = count($member['book']);
+        });
+
+        return $members;
     }
 }
